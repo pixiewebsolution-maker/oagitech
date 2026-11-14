@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   description:
     "OAGITECH (Oil & Gas Inspection Technology) delivers inspection, non-destructive testing, calibration, commercial diving and technical training & certification from Yanbu, Saudi Arabia.",
-  icons: { icon: "/brand/favicon.png", apple: "/brand/favicon.png" },
+  icons: { apple: "/brand/favicon.png" },
   openGraph: {
     type: "website",
     siteName: "OAGITECH",
