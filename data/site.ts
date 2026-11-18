@@ -1,5 +1,7 @@
-// Homepage content, taken from the live oagitech.com (Nov 2026) and tidied for the new site.
-// Photos are Unsplash stock (free licence) as placeholders until OAGITECH supplies its own.
+// Homepage content. Services and courses come from data/services.ts and data/training.ts
+// (the OAGITECH master lists); all wording here is original to this site.
+import { divisionCount, divisions, type DivisionKey } from "./services";
+import { courseCount, trainingCategories } from "./training";
 
 // Local copies of Unsplash photos (free licence), stored in /public/photos.
 const p = (name: string) => `/photos/${name}.jpg`;
@@ -23,180 +25,104 @@ export const photos = {
 };
 
 export const hero = {
-  kicker: "Oil & Gas Inspection Technology",
-  title: ["Building excellence", "through innovation", "& quality"],
+  title: ["Keeping industry", "safe, accurate", "and certified"],
   intro:
-    "Inspection, non-destructive testing, engineering consultancy and technical training & certification for marine, oil & gas, petrochemical, power and infrastructure.",
+    "Safety and PPE inspection, NDT, civil and pressure testing, calibration, underwater services and HSE training from one team in Yanbu, serving all five regions of the Kingdom.",
 };
 
 export const about = {
   statement:
-    "OAGITECH is a multi-disciplinary engineering and technical services organisation, helping industrial, commercial and government clients keep the highest standards of safety, quality and operational efficiency.",
-  body: "Our team combines strong technical knowledge with practical field experience. Working closely with clients and industry partners, we deliver dependable solutions that meet international standards, regulatory requirements and project expectations.",
-  sectors: ["Marine", "Oil & Gas", "Petrochemical", "Power Generation", "Infrastructure", "Process Industries"],
+    "OAGITECH brings inspection, testing, calibration, underwater work and training under one roof, so industrial clients can prove their equipment is safe and their people are competent.",
+  body: "Our inspectors, technicians, divers and trainers work across oil and gas, petrochemical, marine, power and construction projects. Every job ends with clear records: certificates, test reports and training results you can show to clients and auditors.",
+  sectors: ["Oil & Gas", "Petrochemical", "Marine & Offshore", "Power Generation", "Infrastructure & Construction", "Process Industries"],
 };
 
-export const services = [
-  {
-    title: "Safety Inspection",
-    text: "Thorough inspections to identify hazards, ensure compliance and maintain safe working conditions.",
-    image: photos.crewHiVis,
-    href: "/inspection/third-party-inspection",
-  },
-  {
-    title: "Training & Assessment",
-    text: "Practical training and competency assessments to strengthen skills, safety awareness and performance.",
-    image: photos.engineerPointing,
-    href: "/training",
-  },
-  {
-    title: "NDT & Asset Integrity",
-    text: "Non-destructive testing and integrity checks to assess asset condition and support operational reliability.",
-    image: photos.pipework,
-    href: "/ndt",
-  },
-  {
-    title: "Calibration",
-    text: "Reliable calibration services to maintain measurement accuracy, equipment performance and traceability.",
-    image: photos.gaugeDark,
-    href: "/calibration",
-  },
-  {
-    title: "QA/QC Inspection",
-    text: "Quality assurance and control inspections to verify workmanship, specifications and project standards.",
-    image: photos.siteWorker,
-    href: "/inspection/qa-qc-project-management",
-  },
-  {
-    title: "Documentation",
-    text: "Accurate technical reports, inspection records and project documents for clear, organised reporting.",
-    image: photos.pipeworkGrey,
-    href: "/inspection/qa-qc-project-management",
-  },
-];
+const order: DivisionKey[] = ["safety", "ndt", "calibration", "underwater", "pressure", "civil", "ppe", "software"];
+const serviceImage: Record<DivisionKey, string> = {
+  safety: p("crane-blue"),
+  ndt: p("pipework"),
+  calibration: p("gauge-dark"),
+  underwater: p("diver-work"),
+  pressure: p("pipework-grey"),
+  civil: p("site-plans"),
+  ppe: p("hard-hats"),
+  software: p("server-room"),
+};
 
-export const divisions = [
-  {
-    name: "Inspection",
-    href: "/inspection",
-    image: photos.sphereTanks,
-    text: "Independent inspection and expediting to local regulations and international standards.",
-    items: ["Asset Integrity", "QA/QC Project Management", "Third-Party Inspection", "Welding & Consultancy"],
-  },
-  {
-    name: "Non-Destructive Testing",
-    href: "/ndt",
-    image: photos.pipework,
-    text: "Conventional and advanced NDT that finds internal and surface defects without damaging the component.",
-    items: ["Ultrasonic Testing", "Radiographic Testing", "Magnetic Particle Testing", "Penetrant Testing", "Positive Material Identification", "Hardness Test", "Rope Access", "Advanced NDT", "Civil / Structural / Geo"],
-  },
-  {
-    name: "Training & Certification",
-    href: "/training",
-    image: photos.crewHiVis,
-    text: "Safety training, examinations and professional courses that build competent, certified crews.",
-    items: ["Safety Orientation & Induction", "Permit Receiver", "Safety Officer", "Rigger", "Fire Watcher", "Work at Height", "Scaffolding", "Welding Inspection", "NDT & API Courses"],
-  },
-  {
-    name: "Calibration",
-    href: "/calibration",
-    image: photos.gaugeBrass,
-    text: "Onsite and lab calibration that keeps measurement accurate, traceable and audit-ready.",
-    items: ["Pressure", "Dimensional", "Electrical", "Thermal", "Torque", "Flow Meter", "Mass & Volume", "Gas Detector", "Onsite Calibration"],
-  },
-  {
-    name: "Industrial Services",
-    href: "/services",
-    image: photos.refineryNight,
-    text: "Mechanical, electrical and instrumentation works for brownfield projects across the Kingdom.",
-    items: ["Plant Industrial Services", "Operation & Maintenance", "Plant Machinery & Vehicle", "Housing Services", "Remote Services"],
-  },
-  {
-    name: "Commercial Diving",
-    href: "/commercial-diving",
-    image: photos.diverWork,
-    text: "Surface-supplied diving teams for underwater inspection, survey and NDT of marine assets.",
-    items: ["Surface-Supplied Diving", "Underwater Surveys", "Marine Inspections", "Inspection & Certification", "Underwater NDT"],
-  },
-  {
-    name: "Manufacturing & Supply",
-    href: "/manufacturing",
-    image: photos.welderSparks,
-    text: "Power protection, welding supplies and safety equipment for industrial sites.",
-    items: ["Servostabilizers", "UPS Online & Offline", "Welding Electrodes", "Welding Machines & Consumables", "Safety Equipment"],
-  },
-];
+/** "What we offer" rows: the eight service divisions. */
+export const services = order.map((key) => ({
+  title: divisions[key].name,
+  text: divisions[key].blurb,
+  image: serviceImage[key],
+  href: divisions[key].hub,
+  count: divisionCount(key),
+}));
 
-export const activities = [
-  { title: "Third-Party Inspection", text: "Cranes, trucks, forklifts, lifting equipment, safety slings and harnesses, scaffolding, machinery and tools." },
-  { title: "Industrial Safety Training", text: "Professional programmes that raise safety awareness, operational skill and hazard prevention." },
-  { title: "Personnel Certification", text: "Competency assessment and qualification checks that keep your people compliant." },
-  { title: "Equipment Testing", text: "Testing that verifies performance, reliability and safety for dependable operations." },
-  { title: "Non-Destructive Testing", text: "Identifying material defects and structural flaws without damaging the component." },
-  { title: "Calibration", text: "Accurate calibration so measuring instruments deliver reliable, precise results." },
-];
+export const totalServices = order.reduce((n, k) => n + divisionCount(k), 0);
+
+/** Horizontal cards: the eight training categories. */
+export const trainingCards = trainingCategories.map((c) => ({
+  name: c.name,
+  href: c.route,
+  image: c.hero,
+  text: c.tagline,
+  items: c.courses.map((x) => x.title),
+}));
 
 export const reasons = [
-  { title: "Industry expertise", text: "Experienced professionals delivering reliable engineering and technical support." },
-  { title: "Quality assurance", text: "High standards of quality, precision and performance on every job." },
-  { title: "Safety first", text: "Workplace safety and dependable execution at every stage." },
-  { title: "Efficient execution", text: "Cost-effective solutions for smooth, on-time project completion." },
+  { title: "One team, many disciplines", text: "Inspection, NDT, calibration, testing, diving and training from a single contractor and a single point of contact." },
+  { title: "Qualified people", text: "Work is carried out by inspectors, technicians, divers and trainers qualified for the method and the equipment." },
+  { title: "Clear records", text: "Certificates, reports and training records that stand up to client and regulator review." },
+  { title: "Kingdom-wide reach", text: "Based in Yanbu and mobilising to the Eastern, Western, Northern, Southern and Central regions." },
+];
+
+export const industries = [
+  { title: "Oil & Gas", text: "Inspection, NDT and pressure testing for upstream, pipeline and terminal assets." },
+  { title: "Petrochemical", text: "Shutdown inspection, calibration and process safety training for plants." },
+  { title: "Marine & Offshore", text: "Underwater inspection, hull surveys, cleaning and repair for ports and vessels." },
+  { title: "Power Generation", text: "Calibration, NDT and intake and penstock inspection for power and water plants." },
+  { title: "Infrastructure & Construction", text: "Civil testing, lifting equipment inspection and scaffolding training on site." },
+  { title: "Process Industries", text: "Instrument calibration, PPE inspection and HSE training for operating facilities." },
 ];
 
 export const diving = {
   title: "Below the surface",
-  text: "Surface-supplied diving teams with continuous air supply and live communication for jetties, piers, vessel hulls, pipelines and submerged structures.",
+  text: "Diver and ROV teams for jetties, piers, hulls, intakes and offshore structures, from inspection and NDT to cleaning, survey and underwater welding.",
   items: [
-    { title: "Underwater NDT", text: "UT thickness measurement, weld inspection and corrosion assessment." },
-    { title: "Marine Inspections", text: "Jetties, piers, hulls, pipelines and underwater structures." },
-    { title: "Underwater Surveys", text: "Visual inspection and video documentation of submerged assets." },
+    { title: "Inspection & NDT", text: "Structural inspection, thickness measurement, crack detection and corrosion surveys.", href: "/underwater-marine/ndt-corrosion" },
+    { title: "Ship hull services", text: "In-water hull, propeller and rudder inspection, cleaning and damage assessment.", href: "/underwater-marine/ship-hull-inspection" },
+    { title: "Welding & repair", text: "Wet and hyperbaric welding, patch plates, anodes and underwater cutting.", href: "/underwater-marine/welding-cutting-repair" },
   ],
 };
 
-export const courses = [
-  "Safety Orientation & Induction Training",
-  "Permit Receiver Training & Examination",
-  "Safety Officer Training & Examination",
-  "Rigger Training & Examination",
-  "Fire Watcher Training & Examination",
-  "Flagman / Traffic Marshal Training",
-  "Equipment Operator Safety Training",
-  "Work at Height Safety Training",
-  "Scaffolding Training & Certification",
-  "Welding Inspection Courses",
-  "NDT Training Courses",
-  "API Training Courses",
-  "RE/RTO Renewal STU Course",
-  "Bespoke Training",
-];
+export const training = {
+  courseCount,
+  categories: trainingCategories.length,
+  sites: ["Saudi Aramco", "SABIC", "Ma'aden", "SEC", "NEOM", "Royal Commission"],
+};
 
-export const memberships = [
-  "Singapore Welding Society (SWS)",
-  "IRATA International",
-  "Association of Consulting Engineers Singapore (ACES)",
-  "Association for Process Industry (ASPRI)",
-  "Non-Destructive Testing Society (Singapore)",
-];
+/** Short names of the certifications and approvals confirmed by OAGITECH (logos on the Certifications page). */
+export const certifications = ["ISO 9001:2015", "ISO/IEC 17025", "NEBOSH", "IOSH", "OSHA", "AOSH", "LEEA", "MEDIC First Aid", "SASO", "Saudi Accreditation Center", "TVTC", "Transport General Authority", "NRRC"];
 
 export const faqs = [
   {
-    q: "Which industries does OAGITECH serve?",
-    a: "Marine, oil & gas, petrochemical, power generation, infrastructure and process industries, for industrial, commercial and government clients.",
+    q: "Which services does OAGITECH provide?",
+    a: "Safety inspection of lifting, plant, access and pressure equipment, PPE inspection, non-destructive testing, civil and pressure testing, calibration, underwater inspection and repair, HSE and technical training, and software development.",
   },
   {
-    q: "What does OAGITECH inspect?",
-    a: "Cranes, trucks, forklifts and lifting equipment, safety slings and harnesses, scaffolding, machinery and tools, plus pressure vessels, piping and plant through our asset integrity and third-party inspection services.",
+    q: "Do you work outside Yanbu?",
+    a: "Yes. Yanbu is our base, and our teams support projects in the Eastern, Western, Northern, Southern and Central regions of the Kingdom.",
   },
   {
-    q: "Which NDT methods do you offer?",
-    a: "Ultrasonic, radiographic, magnetic particle and penetrant testing, positive material identification and hardness testing, with advanced NDT and rope access for hard-to-reach assets.",
+    q: "Can you prepare workers for Saudi Aramco, SABIC or Ma'aden sites?",
+    a: "Our client-specific training category covers site safety orientations and permit training for Ma'aden, Saudi Aramco, SABIC, SEC, NEOM and Royal Commission sites.",
   },
   {
-    q: "Do you provide training and certification?",
-    a: "Yes. We run safety orientation, permit receiver, safety officer, rigger, fire watcher, work at height, scaffolding and equipment operator courses with examinations, plus welding inspection, NDT, API and bespoke courses.",
+    q: "How are training courses delivered?",
+    a: "Each course can be taken in the classroom, online, or as classroom plus practical sessions. You choose the method when you register.",
   },
   {
-    q: "Can you calibrate equipment on site?",
-    a: "Yes. We offer onsite and lab calibration for pressure, dimensional, electrical, thermal, torque, flow, mass & volume instruments and gas detectors.",
+    q: "What do I receive after an inspection or calibration?",
+    a: "A report or certificate for each item, with findings, results and the next due date, so you have a traceable record for audits.",
   },
 ];

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { activities, photos, reasons } from "@/data/site";
+import { industries, photos, reasons } from "@/data/site";
 import { Reveal } from "../Reveal";
 
 export function WhyUs() {
@@ -37,9 +37,9 @@ export function WhyUs() {
             </ul>
 
             <div className="mt-20">
-              <p className="label text-mute">Business activities</p>
+              <p className="label text-mute">Industries we serve</p>
               <ul className="mt-6 border-t border-line">
-                {activities.map((a, i) => (
+                {industries.map((a, i) => (
                   <li key={a.title} className="border-b border-line">
                     <Reveal delay={i * 0.04} y={16}>
                       <div className="grid gap-2 py-6 md:grid-cols-[1fr_1.3fr] md:gap-8">

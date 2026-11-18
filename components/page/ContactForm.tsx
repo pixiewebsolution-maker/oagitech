@@ -3,7 +3,8 @@
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { desktopMenu } from "@/data/catalog";
+import { Select } from "@/components/ui/Select";
+import { servicePages } from "@/data/services";
 import { company } from "@/data/company";
 
 const field =
@@ -20,7 +21,12 @@ export function ContactForm({ initialSubject = "" }: { initialSubject?: string }
   const [subject, setSubject] = useState(initialSubject);
   const [sent, setSent] = useState(false);
 
-  const services = Array.from(new Set(desktopMenu.flatMap((g) => g.links ?? []).map((l) => l.label)));
+  const services = [...servicePages.map((p) => p.navLabel), "Training & Certification"];
+  const options = [
+    ...services.map((s) => ({ value: s, label: s })),
+    ...(subject && !services.includes(subject) && subject !== "Other" ? [{ value: subject, label: subject }] : []),
+    { value: "Other", label: "Other" },
+  ];
 
   return (
     <form
@@ -37,7 +43,7 @@ export function ContactForm({ initialSubject = "" }: { initialSubject?: string }
           "",
           String(f.get("message") || ""),
         ].join("\n");
-        window.location.href = `mailto:${company.email}?subject=${encodeURIComponent(`Enquiry: ${f.get("service") || "General"}`)}&body=${encodeURIComponent(body)}`;
+        window.location.assign(`mailto:${company.email}?subject=${encodeURIComponent(`Enquiry: ${f.get("service") || "General"}`)}&body=${encodeURIComponent(body)}`);
         setSent(true);
       }}
     >
@@ -59,19 +65,7 @@ export function ContactForm({ initialSubject = "" }: { initialSubject?: string }
           <input type="tel" name="phone" autoComplete="tel" className={field} placeholder="+966" />
         </label>
       </div>
-      <label className="grid gap-2">
-        <span className="text-[0.9rem] font-medium text-ink">Service</span>
-        <select name="service" value={subject} onChange={(e) => setSubject(e.target.value)} className={`${field} appearance-none`}>
-          <option value="">Select a service</option>
-          {services.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
-          ))}
-          {subject && !services.includes(subject) ? <option value={subject}>{subject}</option> : null}
-          <option value="Other">Other</option>
-        </select>
-      </label>
+      <Select label="Service" name="service" value={subject} onChange={setSubject} placeholder="Select a service" options={options} />
       <label className="grid gap-2">
         <span className="text-[0.9rem] font-medium text-ink">Message</span>
         <textarea required name="message" rows={5} className={`${field} resize-y`} placeholder="Tell us about the job, site and timing" />

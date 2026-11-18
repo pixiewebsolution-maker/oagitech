@@ -5,16 +5,16 @@ import { motion, useScroll, useTransform, type MotionValue } from "motion/react"
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { clients } from "@/data/company";
-import { about, courses, divisions, photos } from "@/data/site";
+import { about, photos, services, totalServices } from "@/data/site";
+import { courseCount, regions } from "@/data/training";
 import { Reveal } from "../Reveal";
 
-const totalServices = divisions.reduce((n, d) => n + d.items.length, 0);
 
 const stats = [
-  { value: String(divisions.length), label: "Service divisions" },
-  { value: `${totalServices}+`, label: "Specialised services" },
-  { value: String(courses.length), label: "Training programmes" },
-  { value: String(about.sectors.length), label: "Industries served" },
+  { value: String(services.length), label: "Service divisions" },
+  { value: String(totalServices), label: "Services listed" },
+  { value: String(courseCount), label: "Training courses" },
+  { value: String(regions.length), label: "Regions covered" },
 ];
 
 // Inline photo "pills" dropped between words of the statement
@@ -80,7 +80,7 @@ export function About() {
               <div className="absolute inset-x-4 bottom-4 rounded-2xl bg-white/90 p-5 backdrop-blur md:inset-x-6 md:bottom-6">
                 <p className="label text-mute">Who we are</p>
                 <p className="mt-2 text-[1.02rem] font-medium leading-snug text-ink">
-                  A trusted provider of testing, inspection, engineering consultancy and training & certification.
+                  One team for inspection, testing, calibration, underwater work and training.
                 </p>
               </div>
             </div>
@@ -96,8 +96,8 @@ export function About() {
                   </li>
                 ))}
               </ul>
-              <a href="#divisions" className="pill mt-10 bg-ink text-white hover:bg-ink-3">
-                Explore our divisions
+              <a href="#services" className="pill mt-10 bg-ink text-white hover:bg-ink-3">
+                Explore our services
                 <span className="pill-disc bg-amber text-ink">
                   <ArrowUpRight aria-hidden className="h-4 w-4" strokeWidth={2} />
                 </span>

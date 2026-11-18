@@ -1,18 +1,15 @@
 import type { MetadataRoute } from "next";
-import { categories, pages } from "@/data/catalog";
+import { contentRoutes } from "@/data/catalog";
 import { SITE_URL } from "@/data/site-url";
 
-const UPDATED = "2026-11-15";
+const UPDATED = "2026-11-17";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const hubs = Object.values(categories)
-    .map((c) => c.hub)
-    .filter((h): h is string => Boolean(h));
-
-  return [
-    { url: `${SITE_URL}/`, lastModified: UPDATED, changeFrequency: "monthly", priority: 1 },
-    ...hubs.map((h) => ({ url: `${SITE_URL}${h}`, lastModified: UPDATED, changeFrequency: "monthly" as const, priority: 0.8 })),
-    ...pages.map((p) => ({ url: `${SITE_URL}${p.route}`, lastModified: UPDATED, changeFrequency: "monthly" as const, priority: 0.7 })),
-    { url: `${SITE_URL}/contact`, lastModified: UPDATED, changeFrequency: "yearly", priority: 0.6 },
-  ];
+  const routes = ["/", ...contentRoutes, "/training/register", "/contact"];
+  return routes.map((r) => ({
+    url: `${SITE_URL}${r === "/" ? "/" : r}`,
+    lastModified: UPDATED,
+    changeFrequency: "monthly" as const,
+    priority: r === "/" ? 1 : r.split("/").length === 2 ? 0.8 : 0.7,
+  }));
 }

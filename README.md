@@ -1,6 +1,6 @@
 # OAGITECH website
 
-Next.js 16 (App Router) + Tailwind CSS 4 site for OAGITECH — Oil & Gas Inspection Technology.
+Next.js 16 (App Router) + Tailwind CSS 4 site for OAGITECH, Oil & Gas Inspection Technology.
 
 ## Develop
 
@@ -19,9 +19,11 @@ Preview deployments are kept out of search engines automatically (`app/robots.ts
 
 ## Content
 
-- `data/pages.json` — every service, training, calibration, diving and about page carried over from the old WordPress site.
-- `data/catalog.ts` — categories, navigation menu and page hero photos.
-- `data/site.ts` — homepage content.
-- Old WordPress URLs redirect permanently to the new routes (see `next.config.ts`).
+- `data/services.ts`: service divisions and pages. Service names and codes follow the OAGITECH master lists.
+- `data/training.ts`: the eight training categories, 109 coded courses, delivery methods and regions.
+- `data/about.ts`: About, Certifications and Careers pages.
+- `data/catalog.ts`: navigation menus, hub pages and route lookup.
+- `data/site.ts`: homepage wording.
+- `data/redirects.ts`: old WordPress URLs and the new page each one redirects to.
 
-Photos in `public/photos` are Unsplash stock (free licence) used as placeholders; `public/old` holds images from the old site.
+Photos in `public/photos` are Unsplash stock (free licence) used as placeholders until OAGITECH supplies its own.

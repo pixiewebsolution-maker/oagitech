@@ -11,7 +11,7 @@ const mono = Geist_Mono({ variable: "--nf-mono", subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "OAGITECH — Inspection, NDT, Calibration & Technical Training",
+    default: "OAGITECH | Inspection, NDT, Calibration & HSE Training in Saudi Arabia",
     template: "%s · OAGITECH",
   },
   description:

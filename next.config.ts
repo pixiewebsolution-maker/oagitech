@@ -1,10 +1,8 @@
 import type { NextConfig } from "next";
-import pages from "./data/pages.json";
+import { oldUrlRedirects } from "./data/redirects";
 
-// Old WordPress URLs (e.g. /welding-2/) permanently redirect to the new routes so search rankings carry over.
-const oldUrlRedirects = (pages as { old: string; route: string }[])
-  .map((p) => ({ source: p.old.replace(/\/$/, ""), destination: p.route, permanent: true }))
-  .filter((r) => r.source !== r.destination);
+// Old WordPress URLs (e.g. /welding-2/) permanently redirect to the closest new page so search rankings carry over.
+const redirectList = Object.entries(oldUrlRedirects).map(([source, destination]) => ({ source, destination, permanent: true }));
 
 // Public assets keep their filenames, so they get a week of browser cache plus background revalidation.
 const assetCache = "public, max-age=604800, stale-while-revalidate=86400";
@@ -19,7 +17,7 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 2678400, // 31 days on Vercel's image cache
   },
   redirects() {
-    return [...oldUrlRedirects, { source: "/contact-us", destination: "/contact", permanent: true }];
+    return redirectList;
   },
   headers() {
     return [
@@ -32,7 +30,7 @@ const nextConfig: NextConfig = {
         ],
       },
       { source: "/photos/:file*", headers: [{ key: "Cache-Control", value: assetCache }] },
-      { source: "/old/:file*", headers: [{ key: "Cache-Control", value: assetCache }] },
+      { source: "/accreditations/:file*", headers: [{ key: "Cache-Control", value: assetCache }] },
       { source: "/brand/:file*", headers: [{ key: "Cache-Control", value: assetCache }] },
     ];
   },

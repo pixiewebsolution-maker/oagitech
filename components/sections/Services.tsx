@@ -23,11 +23,11 @@ export function Services() {
           <p className="label text-fog lg:col-span-3">What we offer</p>
           <Reveal className="lg:col-span-6">
             <h2 id="services-title" className="heading text-[clamp(2.4rem,4.6vw,4.4rem)]">
-              Six services. One accountable partner on site.
+              Eight service divisions. One team on site.
             </h2>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-3">
-            <p className="text-[1rem] leading-relaxed text-fog">From hazard inspections to calibrated instruments and the reports that prove it.</p>
+            <p className="text-[1rem] leading-relaxed text-fog">From lifting gear inspection to underwater repair, every service comes with the records that prove it.</p>
           </Reveal>
         </div>
 

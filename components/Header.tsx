@@ -6,21 +6,28 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
-import { categories, desktopMenu, menu, type NavGroup } from "@/data/catalog";
+import { desktopMenu, menu, type NavGroup } from "@/data/catalog";
 import { company } from "@/data/company";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
+/** The original logo, with its white outline made solid so it stays readable over photos and dark sections. */
 export function Logo({ className = "" }: { className?: string }) {
   return (
-    <span className={`inline-flex items-center rounded-full bg-white px-4 py-1.5 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.5)] ${className}`}>
-      <Image src="/brand/oagitech-logo.png" alt="OAGITECH — Oil & Gas Inspection Technology" width={500} height={150} priority className="h-8 w-auto md:h-9" />
-    </span>
+    <Image
+      src="/brand/oagitech-logo-header.png"
+      alt="OAGITECH, Oil & Gas Inspection Technology"
+      width={937}
+      height={303}
+      priority
+      unoptimized
+      className={`h-[3.25rem] w-auto drop-shadow-[0_4px_14px_rgba(0,0,0,0.25)] md:h-[4.25rem] ${className}`}
+    />
   );
 }
 
 function DropPanel({ group, onNavigate }: { group: NavGroup; onNavigate: () => void }) {
-  const cat = group.category ? categories[group.category] : undefined;
+  const cat = group.feature;
   const links = group.links ?? [];
   const twoCol = links.length > 6;
   return (
@@ -34,19 +41,17 @@ function DropPanel({ group, onNavigate }: { group: NavGroup; onNavigate: () => v
       <div className="grid grid-cols-[17rem_1fr] gap-3">
         {cat ? (
           <Link
-            href={cat.hub ?? links[0]?.href ?? "/"}
+            href={cat.href}
             onClick={onNavigate}
             className="group relative flex min-h-[18rem] flex-col justify-end overflow-hidden rounded-[20px] p-5 text-white"
           >
             <Image src={cat.photo} alt="" fill sizes="272px" className="object-cover transition-transform duration-700 group-hover:scale-105" />
             <span aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,14,15,0)_30%,rgba(13,14,15,0.9)_100%)]" />
-            <span className="relative text-[1.35rem] font-medium tracking-[-0.02em]">{cat.name}</span>
-            <span className="relative mt-1.5 text-[0.85rem] leading-snug text-white/75">{cat.blurb}</span>
-            {cat.hub ? (
-              <span className="relative mt-4 inline-flex items-center gap-1.5 text-[0.85rem] font-medium text-amber">
-                View all <ArrowUpRight aria-hidden className="h-4 w-4" />
-              </span>
-            ) : null}
+            <span className="relative text-[1.35rem] font-medium tracking-[-0.02em]">{cat.title}</span>
+            <span className="relative mt-1.5 text-[0.85rem] leading-snug text-white/75">{cat.text}</span>
+            <span className="relative mt-4 inline-flex items-center gap-1.5 text-[0.85rem] font-medium text-amber">
+              View all <ArrowUpRight aria-hidden className="h-4 w-4" />
+            </span>
           </Link>
         ) : null}
         <ul className={`grid content-start gap-0.5 p-2 ${twoCol ? "grid-cols-2" : "grid-cols-1"}`}>
@@ -107,8 +112,13 @@ export function Header() {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 px-5 pt-5 md:px-8 md:pt-7">
+        {/* Soft blur at the top edge once scrolled, so page text doesn't run under the logo */}
+        <div
+          aria-hidden
+          className={`pointer-events-none absolute inset-x-0 top-0 -z-10 h-28 backdrop-blur-md transition-opacity duration-500 [mask-image:linear-gradient(180deg,#000_45%,transparent)] md:h-32 ${scrolled ? "opacity-100" : "opacity-0"}`}
+        />
         <div className="mx-auto flex max-w-[1500px] items-center justify-between gap-4">
-          <Link href="/" aria-label="OAGITECH home" onClick={closeAll}>
+          <Link href="/" aria-label="OAGITECH home" onClick={closeAll} className="shrink-0">
             <Logo />
           </Link>
 
@@ -116,7 +126,19 @@ export function Header() {
             <ul className={`flex items-center rounded-full p-1.5 transition-colors duration-500 ${scrolled || active ? "glass-dark" : "glass"}`}>
               {desktopMenu.map((g) => {
                 const isOpen = active === g.label;
-                const current = g.links?.some((l) => pathname === l.href) || (g.category && pathname === categories[g.category].hub);
+                const current = g.href ? pathname === g.href : g.links?.some((l) => pathname === l.href) || pathname === g.feature?.href;
+                if (g.href) {
+                  return (
+                    <li key={g.label} onMouseEnter={() => setActive(null)}>
+                      <Link
+                        href={g.href}
+                        className={`block rounded-full px-3.5 py-2 text-[0.88rem] font-medium transition-colors ${current ? "bg-white/15 text-white" : "text-white/85 hover:text-white"}`}
+                      >
+                        {g.label}
+                      </Link>
+                    </li>
+                  );
+                }
                 return (
                   <li key={g.label} onMouseEnter={() => openGroup(g.label)}>
                     <button
@@ -210,9 +232,9 @@ export function Header() {
                               transition={{ duration: 0.4, ease }}
                               className="overflow-hidden"
                             >
-                              {g.category && categories[g.category].hub ? (
+                              {g.feature && !g.links.some((l) => l.href === g.feature!.href) ? (
                                 <li>
-                                  <Link href={categories[g.category].hub!} onClick={closeAll} className="block py-2.5 pl-4 text-[1.02rem] text-amber">
+                                  <Link href={g.feature.href} onClick={closeAll} className="block py-2.5 pl-4 text-[1.02rem] text-amber">
                                     All {g.label}
                                   </Link>
                                 </li>

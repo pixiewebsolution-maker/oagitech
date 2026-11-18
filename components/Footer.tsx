@@ -1,26 +1,15 @@
 import Image from "next/image";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
-import { categories, menu } from "@/data/catalog";
+import { menu } from "@/data/catalog";
 import { company } from "@/data/company";
-import { memberships, photos } from "@/data/site";
+import { certifications, photos } from "@/data/site";
 import { Reveal } from "./Reveal";
 
 const footerGroups = menu
   .filter((g) => g.links)
-  .map((g) => ({ label: g.label, hub: g.category ? categories[g.category].hub : undefined, links: g.links! }))
-  .concat([
-    {
-      label: "More",
-      hub: undefined,
-      links: [
-        { label: "Home", href: "/" },
-        { label: "Welding", href: "/welding" },
-        { label: "Civil/Structural/Geo", href: "/civil-structural-geo" },
-        { label: "Underwater NDT Services", href: "/underwater-ndt-services" },
-      ],
-    },
-  ]);
+  .map((g) => ({ label: g.label, hub: g.feature?.href, links: g.links! }))
+  .concat([{ label: "More", hub: undefined, links: [{ label: "Home", href: "/" }, { label: "Software & IT", href: "/software-it" }, { label: "Course Registration", href: "/training/register" }] }]);
 
 export function Footer() {
   return (
@@ -93,14 +82,18 @@ export function Footer() {
               <Image src="/brand/oagitech-logo.png" alt="OAGITECH" width={500} height={150} className="h-9 w-auto" />
             </span>
             <p className="mt-6 max-w-[20rem] text-[0.98rem] leading-relaxed text-fog">
-              Inspection, NDT, engineering consultancy and technical training & certification from Yanbu, Kingdom of Saudi Arabia.
+              Inspection, testing, calibration, underwater services and HSE training from Yanbu, Kingdom of Saudi Arabia.
             </p>
             <a href={company.brochure} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 text-[0.95rem] font-medium text-paper underline underline-offset-4">
               Download company profile <ArrowUpRight aria-hidden className="h-4 w-4" />
             </a>
-            <p className="label mt-10 text-fog">Industry memberships</p>
-            <ul className="mt-4 grid gap-2 text-[0.9rem] text-white/70">
-              {memberships.map((m) => (
+            <p className="label mt-10 text-fog">
+              <Link href="/about/certifications-and-awards" className="hover:text-paper">
+                Certifications & accreditations
+              </Link>
+            </p>
+            <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-1.5 text-[0.88rem] text-white/70">
+              {certifications.map((m) => (
                 <li key={m}>{m}</li>
               ))}
             </ul>
@@ -129,7 +122,7 @@ export function Footer() {
           OAGITECH
         </p>
         <div className="flex flex-col gap-3 border-t border-white/10 py-6 text-[0.85rem] text-fog md:flex-row md:justify-between">
-          <p>© 2026 OAGITECH — Oil & Gas Inspection Technology. All rights reserved.</p>
+          <p>© 2026 OAGITECH, Oil & Gas Inspection Technology. All rights reserved.</p>
           <p>Yanbu · Kingdom of Saudi Arabia</p>
         </div>
       </div>
