@@ -6,10 +6,24 @@ import { company } from "@/data/company";
 import { certifications, photos } from "@/data/site";
 import { Reveal } from "./Reveal";
 
-const footerGroups = menu
-  .filter((g) => g.links)
-  .map((g) => ({ label: g.label, hub: g.feature?.href, links: g.links! }))
-  .concat([{ label: "More", hub: undefined, links: [{ label: "Home", href: "/" }, { label: "Software & IT", href: "/software-it" }, { label: "Course Registration", href: "/training/register" }] }]);
+type FooterGroup = { label: string; hub?: string; links: { label: string; href: string }[] };
+
+const group = (label: string): FooterGroup => {
+  const g = menu.find((m) => m.label === label)!;
+  return { label, hub: g.feature?.href, links: g.links ?? [] };
+};
+
+/** Five columns; the short groups share a column so nothing gets squeezed. */
+const footerColumns: FooterGroup[][] = [
+  [group("Inspection"), group("NDT")],
+  [group("Calibration")],
+  [group("Underwater & Marine")],
+  [group("Training")],
+  [
+    { ...group("About Us"), label: "Company" },
+    { label: "Digital", links: [{ label: "Software & IT", href: "/software-it" }] },
+  ],
+];
 
 export function Footer() {
   return (
@@ -74,45 +88,65 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Link columns: every page from the menu */}
-      <div className="mx-auto max-w-[1500px] px-3 pb-10 pt-20 md:px-9 xl:px-13">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-3">
-            <span className="inline-flex rounded-full bg-white px-4 py-1.5">
-              <Image src="/brand/oagitech-logo.png" alt="OAGITECH" width={500} height={150} className="h-9 w-auto" />
-            </span>
-            <p className="mt-6 max-w-[20rem] text-[0.98rem] leading-relaxed text-fog">
+      {/* Brand row, then link columns: every page from the menu */}
+      <div className="mx-auto max-w-[1500px] px-3 pb-12 pt-20 md:px-9 md:pt-24 xl:px-13">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-5">
+            <Image src="/brand/oagitech-logo-header.png" alt="OAGITECH" width={937} height={303} unoptimized className="h-14 w-auto" />
+            <p className="mt-6 max-w-[24rem] text-[1rem] leading-relaxed text-fog">
               Inspection, testing, calibration, underwater services and HSE training from Yanbu, Kingdom of Saudi Arabia.
             </p>
-            <a href={company.brochure} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 text-[0.95rem] font-medium text-paper underline underline-offset-4">
-              Download company profile <ArrowUpRight aria-hidden className="h-4 w-4" />
-            </a>
-            <p className="label mt-10 text-fog">
-              <Link href="/about/certifications-and-awards" className="hover:text-paper">
-                Certifications & accreditations
-              </Link>
-            </p>
-            <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-1.5 text-[0.88rem] text-white/70">
+          </div>
+          <div className="lg:col-span-7 lg:justify-self-end">
+            <Link href="/about/certifications-and-awards" className="text-[0.9rem] font-medium text-paper transition-colors hover:text-amber">
+              Certifications & accreditations
+            </Link>
+            <ul className="mt-4 flex flex-wrap gap-2 lg:max-w-[40rem]">
               {certifications.map((m) => (
-                <li key={m}>{m}</li>
+                <li key={m} className="rounded-full border border-white/10 px-3 py-1 text-[0.82rem] text-white/70">
+                  {m}
+                </li>
               ))}
             </ul>
           </div>
-          <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:col-span-9 xl:grid-cols-4">
-            {footerGroups.map((g) => (
-              <nav key={g.label} aria-label={g.label}>
-                <p className="label text-fog">{g.hub ? <Link href={g.hub} className="hover:text-paper">{g.label}</Link> : g.label}</p>
-                <ul className="mt-4 grid gap-2 text-[0.92rem]">
-                  {g.links.map((l) => (
-                    <li key={l.href + l.label}>
-                      <Link href={l.href} className="text-white/75 transition-colors hover:text-amber">
-                        {l.label}
+        </div>
+
+        <div className="mt-16 grid grid-cols-2 gap-x-6 gap-y-12 border-t border-white/10 pt-14 md:gap-x-10 lg:grid-cols-5">
+          {footerColumns.map((col, i) => (
+            <div key={i} className="grid content-start gap-12">
+              {col.map((g) => (
+                <nav key={g.label} aria-label={g.label}>
+                  <p className="text-[1rem] font-medium text-paper">
+                    {g.hub ? (
+                      <Link href={g.hub} className="transition-colors hover:text-amber">
+                        {g.label}
                       </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            ))}
+                    ) : (
+                      g.label
+                    )}
+                  </p>
+                  <ul className="mt-5 grid gap-3 text-[0.92rem] leading-snug">
+                    {g.links.map((l) => (
+                      <li key={l.href + l.label}>
+                        <Link href={l.href} className="text-white/60 transition-colors hover:text-amber">
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <a href={company.brochure} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[0.95rem] font-medium text-paper underline underline-offset-4 hover:text-amber">
+            Download company profile <ArrowUpRight aria-hidden className="h-4 w-4" />
+          </a>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-[0.92rem] text-white/60">
+            <a href={company.phoneHref} className="hover:text-amber">{company.phone}</a>
+            <a href={`mailto:${company.email}`} className="hover:text-amber">{company.email}</a>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { Diving } from "@/components/sections/Diving";
 import { Divisions } from "@/components/sections/Divisions";
 import { Faq } from "@/components/sections/Faq";
 import { Hero } from "@/components/sections/Hero";
+import { Regions } from "@/components/sections/Regions";
 import { Services } from "@/components/sections/Services";
 import { Training } from "@/components/sections/Training";
 import { WhyUs } from "@/components/sections/WhyUs";
@@ -22,6 +23,7 @@ export default function Home() {
         <About />
         <Services />
         <Divisions />
+        <Regions />
         <WhyUs />
         <Diving />
         <Training />

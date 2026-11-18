@@ -28,10 +28,10 @@ export function Diving() {
         <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,18,34,0.25)_0%,rgba(4,18,34,0.55)_55%,rgba(4,18,34,0.92)_100%)]" />
 
         <div className="relative flex min-h-[115svh] flex-col justify-between px-6 py-12 text-white md:px-12 md:py-16 xl:px-16">
-          <p className="label text-white/75">Underwater inspection & marine</p>
+          <p className="label text-white/75">Diver and ROV teams</p>
 
           <div>
-            <LineReveal lines={[diving.title]} className="display text-[clamp(4rem,14vw,14rem)] uppercase" />
+            <LineReveal lines={diving.title} className="display text-[clamp(3rem,9.5vw,10rem)] uppercase" />
             <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-end">
               <Reveal className="lg:col-span-5">
                 <p className="max-w-[30rem] text-[1.1rem] leading-relaxed text-white/80">{diving.text}</p>

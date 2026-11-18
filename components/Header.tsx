@@ -21,7 +21,7 @@ export function Logo({ className = "" }: { className?: string }) {
       height={303}
       priority
       unoptimized
-      className={`h-[3.25rem] w-auto drop-shadow-[0_4px_14px_rgba(0,0,0,0.25)] md:h-[4.25rem] ${className}`}
+      className={`h-[3.25rem] w-auto drop-shadow-[0_12px_18px_rgba(0,0,0,0.5)] md:h-[4.25rem] ${className}`}
     />
   );
 }
@@ -123,7 +123,7 @@ export function Header() {
           </Link>
 
           <nav aria-label="Main" className="relative hidden xl:block" onMouseLeave={scheduleClose}>
-            <ul className={`flex items-center rounded-full p-1.5 transition-colors duration-500 ${scrolled || active ? "glass-dark" : "glass"}`}>
+            <ul className={`lift flex items-center rounded-full p-1.5 transition-colors duration-500 ${scrolled || active ? "glass-dark" : "glass"}`}>
               {desktopMenu.map((g) => {
                 const isOpen = active === g.label;
                 const current = g.href ? pathname === g.href : g.links?.some((l) => pathname === l.href) || pathname === g.feature?.href;
@@ -168,7 +168,7 @@ export function Header() {
 
           <div className="flex items-center gap-2">
             <span className="hidden sm:block">
-              <Link href="/contact" className="pill bg-white text-ink hover:bg-amber" onClick={closeAll}>
+              <Link href="/contact" className="lift pill bg-white text-ink hover:bg-amber" onClick={closeAll}>
                 Enquire now
                 <span className="pill-disc bg-ink text-white">
                   <ArrowUpRight aria-hidden className="h-4 w-4" strokeWidth={2} />
@@ -180,7 +180,7 @@ export function Header() {
               onClick={() => setOpen(true)}
               aria-label="Open menu"
               aria-expanded={open}
-              className={`grid h-12 w-12 place-items-center rounded-full text-white xl:hidden ${scrolled ? "glass-dark" : "glass"}`}
+              className={`lift grid h-12 w-12 place-items-center rounded-full text-white xl:hidden ${scrolled ? "glass-dark" : "glass"}`}
             >
               <Menu aria-hidden className="h-5 w-5" />
             </button>

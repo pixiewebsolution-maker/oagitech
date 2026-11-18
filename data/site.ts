@@ -86,7 +86,7 @@ export const industries = [
 ];
 
 export const diving = {
-  title: "Below the surface",
+  title: ["Underwater inspection", "& marine"],
   text: "Diver and ROV teams for jetties, piers, hulls, intakes and offshore structures, from inspection and NDT to cleaning, survey and underwater welding.",
   items: [
     { title: "Inspection & NDT", text: "Structural inspection, thickness measurement, crack detection and corrosion surveys.", href: "/underwater-marine/ndt-corrosion" },
