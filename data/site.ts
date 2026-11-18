@@ -3,25 +3,26 @@
 import { divisionCount, divisions, type DivisionKey } from "./services";
 import { courseCount, trainingCategories } from "./training";
 
-// Local copies of Unsplash photos (free licence), stored in /public/photos.
+// Local copies of Unsplash photos (free licence) and U.S. Navy photos from Wikimedia Commons
+// (public domain: diver-hull-cleaning, divers-hull, diver-welding), stored in /public/photos.
 const p = (name: string) => `/photos/${name}.jpg`;
 
 export const photos = {
   heroRefinery: p("hero-refinery"),
-  refineryNight: p("refinery-night"),
-  welderBlue: p("welder-blue"),
-  welderSparks: p("welder-sparks"),
+  refineryNight: p("refinery-night-hd"),
+  welderBlue: p("welder-blue-hd"),
+  welderSparks: p("welder-sparks-hd"),
   diverDeep: p("diver-deep"),
-  diverWork: p("diver-work"),
-  gaugeDark: p("gauge-dark"),
-  gaugeBrass: p("gauge-brass"),
+  diversHull: p("divers-hull"),
+  gaugeDark: p("gauge-dark-hd"),
+  gaugeBrass: p("gauge-brass-hd"),
   offshoreHaze: p("offshore-haze"),
-  crewHiVis: p("crew-hivis"),
-  engineerPointing: p("engineer-pointing"),
-  siteWorker: p("site-worker"),
-  pipework: p("pipework"),
-  pipeworkGrey: p("pipework-grey"),
-  sphereTanks: p("sphere-tanks"),
+  crewHiVis: p("crew-hivis-hd"),
+  weldGrinder: p("weld-grinder"),
+  siteWorker: p("site-worker-hd"),
+  pipework: p("pipework-hd"),
+  pipeworkGrey: p("pipework-grey-hd"),
+  sphereTanks: p("sphere-tanks-hd"),
 };
 
 export const hero = {
@@ -40,10 +41,10 @@ export const about = {
 const order: DivisionKey[] = ["safety", "ndt", "calibration", "underwater", "pressure", "civil", "ppe", "software"];
 const serviceImage: Record<DivisionKey, string> = {
   safety: p("crane-blue"),
-  ndt: p("pipework"),
-  calibration: p("gauge-dark"),
-  underwater: p("diver-work"),
-  pressure: p("pipework-grey"),
+  ndt: p("pipework-hd"),
+  calibration: p("gauge-dark-hd"),
+  underwater: p("divers-hull"),
+  pressure: p("pipework-grey-hd"),
   civil: p("site-plans"),
   ppe: p("hard-hats"),
   software: p("server-room"),

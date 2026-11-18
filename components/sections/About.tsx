@@ -76,7 +76,7 @@ export function About() {
         <div className="mt-20 grid gap-12 md:mt-28 lg:grid-cols-12 lg:gap-10">
           <Reveal className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[26px]">
-              <Image src={photos.engineerPointing} alt="Site engineer directing work on an industrial project" fill sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
+              <Image src={photos.weldGrinder} alt="Welder grinding steel with sparks flying" fill sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
               <div className="absolute inset-x-4 bottom-4 rounded-2xl bg-white/90 p-5 backdrop-blur md:inset-x-6 md:bottom-6">
                 <p className="label text-mute">Who we are</p>
                 <p className="mt-2 text-[1.02rem] font-medium leading-snug text-ink">

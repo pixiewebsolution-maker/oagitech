@@ -273,10 +273,11 @@ function CountryView({ country, onBack }: { country: OperatingCountry; onBack: (
                     <ChevronDown aria-hidden className={`h-4 w-4 text-white/50 transition-transform duration-300 ${open ? "rotate-180" : ""}`} />
                   </button>
                   {open ? (
-                    <ul className="flex flex-wrap gap-2 pb-5 pl-[1.4rem]">
-                      {r.cities.map((c) => (
-                        <li key={c} className={`rounded-full border px-3 py-1 text-[0.88rem] ${c === "Yanbu" ? "border-amber/50 bg-amber/10 text-amber-2" : "border-white/12 bg-white/[0.04] text-white/80"}`}>
-                          {c === "Yanbu" ? "Yanbu · Head office" : c}
+                    <ul className="flex flex-wrap items-center gap-x-3 gap-y-1.5 pb-5 pl-[1.4rem] text-[0.98rem] text-white/70">
+                      {r.cities.map((c, i) => (
+                        <li key={c} className="flex items-center gap-3">
+                          {i > 0 ? <span aria-hidden className="h-1 w-1 rounded-full bg-white/30" /> : null}
+                          {c === "Yanbu" ? <span className="text-amber-2">Yanbu (head office)</span> : c}
                         </li>
                       ))}
                     </ul>

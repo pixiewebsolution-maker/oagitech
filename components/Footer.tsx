@@ -30,7 +30,7 @@ export function Footer() {
     <footer id="contact" className="bg-ink p-2.5 text-paper md:p-3">
       {/* Call to action panel */}
       <div className="relative overflow-hidden rounded-[22px] md:rounded-[30px]">
-        <Image src={photos.offshoreHaze} alt="" fill sizes="100vw" className="object-cover" />
+        <Image src={photos.offshoreHaze} alt="" fill sizes="(min-width:768px) 100vw, 200vw" quality={85} className="object-cover" />
         <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,14,15,0.88)_0%,rgba(13,14,15,0.55)_55%,rgba(13,14,15,0.25)_100%)]" />
         <div className="relative grid gap-12 px-6 py-20 md:px-12 md:py-28 lg:grid-cols-12 xl:px-16">
           <div className="lg:col-span-7">

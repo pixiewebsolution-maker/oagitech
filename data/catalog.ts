@@ -25,7 +25,7 @@ const calibration: NavGroup = { label: "Calibration", feature: feature("calibrat
 const underwater: NavGroup = { label: "Underwater & Marine", feature: feature("underwater"), links: svc("underwater") };
 const training: NavGroup = {
   label: "Training",
-  feature: { title: "HSE & Technical Training", text: "109 courses in eight categories, classroom, online or with practical sessions.", photo: "/photos/crew-hivis.jpg", href: "/training" },
+  feature: { title: "HSE & Technical Training", text: "109 courses in eight categories, classroom, online or with practical sessions.", photo: "/photos/crew-hivis-hd.jpg", href: "/training" },
   links: [...trainingCategories.map((c) => ({ label: c.name, href: c.route })), { label: "Course Registration", href: "/training/register" }],
 };
 const about: NavGroup = {
@@ -68,7 +68,7 @@ export const hubs: HubPage[] = [
     route: "/training",
     title: "Training & Certification",
     tagline: "109 safety and technical courses in eight categories.",
-    hero: "/photos/crew-hivis.jpg",
+    hero: "/photos/crew-hivis-hd.jpg",
     intro: trainingIntro,
     cards: trainingCategories.map((c) => ({ title: c.name, text: c.tagline, href: c.route, photo: c.hero, count: c.courses.length })),
   },

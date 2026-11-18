@@ -11,7 +11,7 @@
   --color-ink: #0d0e0f;
   --color-ink-2: #16181a;
   --color-ink-3: #212427;
-  --color-mute: #6b6862;
+  --color-mute: #4b4843;
   --color-fog: #a5a29b;
   --color-amber: #f2a31b;
   --color-amber-2: #ffb935;
@@ -58,7 +58,7 @@ body {
 .display {
   font-family: var(--font-display);
   font-weight: 400;
-  line-height: 0.88;
+  line-height: 0.98;
   letter-spacing: -0.01em;
 }
 
@@ -94,9 +94,8 @@ body {
 /* Raised floating controls (nav pill, header buttons) */
 .lift {
   box-shadow:
-    0 22px 44px -18px rgba(0, 0, 0, 0.6),
-    0 6px 14px -6px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    0 10px 26px -14px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
 /* Pill button with a trailing arrow disc */

@@ -169,7 +169,7 @@ export function Select({ label, value, onChange, options, placeholder = "Select"
                   onClick={() => choose(i)}
                   className={`flex cursor-pointer items-center gap-3 rounded-xl px-3.5 py-2.5 text-[0.98rem] transition-colors ${isAct ? "bg-paper-2" : ""} ${isSel ? "font-medium text-ink" : "text-ink/85"}`}
                 >
-                  {o.hint ? <span className={`w-[4.6rem] shrink-0 text-[0.85rem] font-medium tabular-nums ${isSel ? "text-amber" : "text-fog"}`}>{o.hint}</span> : null}
+                  {o.hint ? <span className={`w-[4.6rem] shrink-0 text-[0.85rem] font-medium tabular-nums ${isSel ? "text-amber" : "text-mute"}`}>{o.hint}</span> : null}
                   <span className="flex-1">{o.label}</span>
                   {isSel ? <Check aria-hidden className="h-4 w-4 shrink-0 text-amber" strokeWidth={2.4} /> : null}
                 </li>

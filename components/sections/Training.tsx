@@ -33,7 +33,7 @@ export function Training() {
             </Reveal>
             <Reveal delay={0.15}>
               <div className="relative mt-10 aspect-[4/3] overflow-hidden rounded-[26px]">
-                <Image src={photos.crewHiVis} alt="Site crew in hard hats and hi-vis vests at a briefing" fill sizes="(min-width:1024px) 38vw, 100vw" className="object-cover" />
+                <Image src={photos.crewHiVis} alt="Site crew in hard hats and hi-vis vests at a briefing" fill sizes="(min-width:1024px) 50vw, 120vw" className="object-cover" />
               </div>
             </Reveal>
             <p className="mt-6 text-[0.95rem] leading-relaxed text-fog">

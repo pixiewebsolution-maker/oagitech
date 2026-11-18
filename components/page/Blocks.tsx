@@ -70,7 +70,7 @@ export function ServiceList({ items }: { items: ServiceItem[] }) {
       <ul className="border-t border-line">
         {items.map((it) => (
           <li key={it.code ?? it.name} className="grid gap-2 border-b border-line py-6 md:grid-cols-[7rem_1fr] md:gap-6">
-            <span className="text-[0.85rem] font-medium tabular-nums text-fog md:pt-1">{it.code}</span>
+            <span className="text-[0.85rem] font-medium tabular-nums text-mute md:pt-1">{it.code}</span>
             <div>
               <h3 className="text-[1.2rem] font-medium tracking-[-0.02em] text-ink">{it.name}</h3>
               {it.text ? <p className="mt-2 text-[1rem] leading-relaxed text-mute">{it.text}</p> : null}
@@ -85,7 +85,7 @@ export function ServiceList({ items }: { items: ServiceItem[] }) {
       {items.map((it) => (
         <li key={it.code ?? it.name} className="flex items-baseline gap-3 border-b border-line py-3.5 text-[1rem] text-ink">
           {it.code ? (
-            <span className="w-[4.6rem] shrink-0 text-[0.82rem] font-medium tabular-nums text-fog">{it.code}</span>
+            <span className="w-[4.6rem] shrink-0 text-[0.82rem] font-medium tabular-nums text-mute">{it.code}</span>
           ) : (
             <span aria-hidden className="h-1.5 w-1.5 shrink-0 translate-y-[-0.15em] rounded-full bg-amber" />
           )}

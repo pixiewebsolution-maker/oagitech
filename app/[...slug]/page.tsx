@@ -155,7 +155,7 @@ export default async function Page({ params }: PageProps<"/[...slug]">) {
                   {tc.courses.map((c) => (
                     <li key={c.code} className="border-b border-line">
                       <Link href={`/training/register?course=${c.code}`} className="group grid grid-cols-[5.5rem_1fr_auto] items-center gap-4 py-5">
-                        <span className="text-[0.85rem] font-medium tabular-nums text-fog">{c.code}</span>
+                        <span className="text-[0.85rem] font-medium tabular-nums text-mute">{c.code}</span>
                         <span className="text-[1.1rem] font-medium tracking-[-0.015em] text-ink transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5">{c.title}</span>
                         <span className="flex items-center gap-1.5 text-[0.9rem] font-medium text-mute transition-colors group-hover:text-ink">
                           Register <ArrowUpRight aria-hidden className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />

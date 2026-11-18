@@ -40,11 +40,12 @@ export function PageHero({
       <div className="relative h-[min(86svh,880px)] min-h-[600px] overflow-hidden rounded-[22px] md:rounded-[30px]">
         <motion.div className="absolute inset-0" style={reduce ? undefined : { y }}>
           <motion.div className="absolute inset-0" initial={reduce ? false : { scale: 1.15 }} animate={{ scale: 1.03 }} transition={{ duration: 2.4, ease }}>
-            <Image src={image} alt="" fill priority sizes="100vw" className="object-cover" />
+            <Image src={image} alt="" fill priority sizes="(min-width:768px) 100vw, 200vw" quality={85} className="object-cover" />
           </motion.div>
         </motion.div>
         <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,14,15,0.55)_0%,rgba(13,14,15,0.1)_30%,rgba(13,14,15,0.25)_55%,rgba(13,14,15,0.9)_100%)]" />
         <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,14,15,0.5)_0%,rgba(13,14,15,0)_65%)]" />
+        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_88%_88%,rgba(13,14,15,0.7)_0%,rgba(13,14,15,0)_100%)]" />
 
         <div className="absolute inset-x-0 bottom-0 px-6 pb-8 md:px-12 md:pb-12 xl:px-16 xl:pb-14">
           <motion.nav
@@ -82,7 +83,7 @@ export function PageHero({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.1, ease, delay: 0.75 }}
             >
-              {tagline ? <p className="max-w-[26rem] text-[1.05rem] leading-relaxed text-white/80">{tagline}</p> : null}
+              {tagline ? <p className="max-w-[26rem] text-[1.05rem] leading-relaxed text-white [text-shadow:0_1px_14px_rgba(0,0,0,0.65)]">{tagline}</p> : null}
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <Link href={cta.href} className="pill bg-amber text-ink hover:bg-amber-2">
                   {cta.label}

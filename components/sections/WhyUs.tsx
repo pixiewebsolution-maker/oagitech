@@ -17,7 +17,7 @@ export function WhyUs() {
               </Reveal>
               <Reveal delay={0.1}>
                 <div className="relative mt-10 aspect-[5/4] overflow-hidden rounded-[26px]">
-                  <Image src={photos.welderSparks} alt="Welder working on steel with sparks flying" fill sizes="(min-width:1024px) 38vw, 100vw" className="object-cover" />
+                  <Image src={photos.refineryNight} alt="Refinery towers lit up at night" fill sizes="(min-width:1024px) 50vw, 120vw" className="object-cover" />
                 </div>
               </Reveal>
             </div>

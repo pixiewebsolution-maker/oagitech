@@ -59,7 +59,7 @@ export const divisions: Record<DivisionKey, Division> = {
     name: "NDT Services",
     short: "NDT",
     hub: "/ndt",
-    photo: ph("pipework"),
+    photo: ph("pipework-hd"),
     blurb: "Conventional and advanced non-destructive testing that finds defects in welds, plate, pipe and plant without damaging them.",
   },
   civil: {
@@ -75,7 +75,7 @@ export const divisions: Record<DivisionKey, Division> = {
     name: "Pressure Testing",
     short: "Pressure Testing",
     hub: "/pressure-testing",
-    photo: ph("pipework-grey"),
+    photo: ph("pipework-grey-hd"),
     blurb: "Hydrostatic, pneumatic and leak testing for pipelines, vessels, tanks, boilers, valves, hoses and manifolds.",
   },
   calibration: {
@@ -83,7 +83,7 @@ export const divisions: Record<DivisionKey, Division> = {
     name: "Calibration Services",
     short: "Calibration",
     hub: "/calibration",
-    photo: ph("gauge-brass"),
+    photo: ph("gauge-brass-hd"),
     blurb: "Calibration of 100 instrument types across ten disciplines, from pressure gauges to flaw detectors.",
   },
   underwater: {
@@ -204,7 +204,7 @@ const ndtPages: ServicePage[] = [
     division: "ndt",
     navLabel: "Ultrasonic & Advanced Ultrasonic",
     tagline: "Sound waves that see inside welds, plate and pipe.",
-    hero: ph("pipework"),
+    hero: ph("pipework-hd"),
     intro: [
       "Ultrasonic methods send high frequency sound into a material and read the echoes that come back from flaws, back walls and changes in thickness.",
       "From quick thickness readings to phased array and TOFD weld inspection, ultrasonic testing gives accurate sizing of internal defects and a permanent digital record without radiation or interruption to nearby work.",
@@ -375,7 +375,7 @@ const pressureTesting: ServicePage = {
   division: "pressure",
   navLabel: "Pressure Testing",
   tagline: "Proving strength and tightness before the system goes live.",
-  hero: ph("pipework-grey"),
+  hero: ph("pipework-grey-hd"),
   intro: [
     "A pressure test is the final proof that a pipeline, vessel or component can safely hold its design pressure without leaking.",
     "We plan and carry out hydrostatic, pneumatic and nitrogen tests with calibrated gauges and recorders, controlled pressurisation and clear hold periods, then issue a test record your client and inspector can sign off.",
@@ -431,7 +431,7 @@ const calPage = (slug: string, navLabel: string, tagline: string, hero: string, 
 });
 
 const calibrationPages: ServicePage[] = [
-  calPage("pressure-vacuum", "Pressure & Vacuum Calibration", "Accurate pressure readings for safe, stable processes.", "gauge-dark", [
+  calPage("pressure-vacuum", "Pressure & Vacuum Calibration", "Accurate pressure readings for safe, stable processes.", "gauge-dark-hd", [
     "Pressure instruments protect people and plant. A gauge that reads low can hide a dangerous condition, and one that reads high can trip a process for no reason.",
     "We calibrate gauges, transmitters, switches, recorders and calibrators across vacuum and high pressure ranges so your readings can be trusted.",
   ], 1, ["Pressure Gauge", "Digital Pressure Gauge", "Pressure Transmitter", "Differential Pressure Transmitter", "Pressure Switch", "Pressure Recorder", "Vacuum Gauge", "Pressure Calibrator", "Manometer", "Hydraulic Pressure Gauge"]),
@@ -510,7 +510,7 @@ const underwaterPages: ServicePage[] = [
     "In-water inspection lets owners check the hull, propeller and steering gear between dry dockings and after incidents.",
     "We inspect hulls, propellers, rudders, sea chests, thrusters and keels, measure hull thickness and assess coating, corrosion and damage.",
   ], 21, ["Ship Hull Underwater Inspection", "Ship Hull Thickness Measurement", "Ship Propeller Inspection", "Ship Rudder Inspection", "Ship Sea Chest Inspection", "Ship Thruster Inspection", "Ship Keel Inspection", "Ship Hull Coating Inspection", "Ship Hull Corrosion Inspection", "Underwater Ship Damage Assessment"]),
-  uwPage("cleaning-maintenance", "Underwater Cleaning & Maintenance", "Cleaner hulls, intakes and structures that perform as designed.", "diver-work", [
+  uwPage("cleaning-maintenance", "Underwater Cleaning & Maintenance", "Cleaner hulls, intakes and structures that perform as designed.", "diver-hull-cleaning", [
     "Marine growth adds drag to vessels, blocks intakes and hides defects on structures.",
     "We clean hulls, propellers, sea chests, pipelines, tanks, intakes and jetties, remove marine growth and debris, and use high pressure water jetting where needed.",
   ], 31, ["Underwater Ship Hull Cleaning", "Underwater Propeller Cleaning", "Underwater Sea Chest Cleaning", "Underwater Marine Growth Removal", "Underwater Pipeline Cleaning", "Underwater Tank Cleaning", "Underwater Intake Structure Cleaning", "Underwater Jetty & Pier Cleaning", "Underwater High-Pressure Water Jet Cleaning", "Underwater Debris Removal"]),
@@ -522,7 +522,7 @@ const underwaterPages: ServicePage[] = [
     "Reservoirs, cooling water intakes, outfalls, pump stations and penstocks keep plants running and are difficult to take out of service.",
     "We inspect these assets along with gates, valves, mooring systems, anchor chains and subsea cables, and respond to emergency damage.",
   ], 51, ["Underwater Water Reservoir Inspection", "Underwater Cooling Water Intake Inspection", "Underwater Outfall Pipeline Inspection", "Underwater Pump Station Inspection", "Underwater Penstock Inspection", "Underwater Gate & Valve Inspection", "Underwater Mooring System Inspection", "Underwater Anchor Chain Inspection", "Underwater Cable Inspection", "Underwater Emergency Damage Inspection"]),
-  uwPage("welding-cutting-repair", "Underwater Welding, Cutting & Repair", "Repairs carried out where the damage is.", "offshore-haze", [
+  uwPage("welding-cutting-repair", "Underwater Welding, Cutting & Repair", "Repairs carried out where the damage is.", "diver-welding", [
     "When a structure or vessel is damaged below the waterline, repairing it in place saves the time and cost of removal or dry docking.",
     "We carry out wet and dry hyperbaric welding, patch plates and anode installation, arc, oxy-arc and exothermic cutting, and inspection and verification of underwater weld repairs.",
   ], 61, ["Underwater Wet Welding", "Underwater Dry / Hyperbaric Welding", "Underwater Structural Welding", "Underwater Pipeline Welding", "Underwater Ship Hull Welding", "Underwater Welding Repair", "Underwater Patch Plate Welding", "Underwater Anode Welding & Installation", "Underwater Arc Cutting", "Underwater Oxy-Arc Cutting", "Underwater Exothermic Cutting", "Underwater Structural Steel Cutting", "Underwater Pipe Cutting", "Underwater Weld Inspection & Testing", "Underwater Weld Repair Verification"]),

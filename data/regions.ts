@@ -27,7 +27,7 @@ export const operatingCountries: OperatingCountry[] = [
     key: "saudi",
     name: "Saudi Arabia",
     note: "Head office, Yanbu",
-    text: "From our head office in Yanbu, inspection, testing, calibration, diving and training teams mobilise to sites in all five regions of the Kingdom.",
+    text: "From our Yanbu head office, we cover all five regions of the Kingdom.",
     regions: saudiRegions,
   },
   {

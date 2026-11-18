@@ -23,7 +23,7 @@ export function Diving() {
         style={reduce ? { borderRadius: 30 } : { marginInline: inset, borderRadius: radius }}
       >
         <motion.div className="absolute inset-[-14%_0]" style={reduce ? undefined : { y }}>
-          <Image src={photos.diverDeep} alt="Diver descending through deep blue water" fill sizes="100vw" className="object-cover" />
+          <Image src={photos.diverDeep} alt="Diver descending through deep blue water" fill sizes="(min-width:768px) 100vw, 200vw" quality={85} className="object-cover" />
         </motion.div>
         <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,18,34,0.25)_0%,rgba(4,18,34,0.55)_55%,rgba(4,18,34,0.92)_100%)]" />
 

@@ -58,7 +58,7 @@ export function Divisions() {
         >
           {trainingCards.map((d) => (
             <Link key={d.name} href={d.href} className="group relative flex h-[34rem] w-[19rem] shrink-0 flex-col justify-between overflow-hidden rounded-[26px] bg-ink text-paper md:w-[24rem] lg:h-[min(34rem,58vh)] lg:w-[27rem]">
-              <Image src={d.image} alt="" fill sizes="440px" className="object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" />
+              <Image src={d.image} alt="" fill sizes="(min-width:1024px) 58vw, 160vw" className="object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" />
               {/* Shade only where text sits: the top for the title, the bottom for the course chips */}
               <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,14,15,0.78)_0%,rgba(13,14,15,0.35)_32%,rgba(13,14,15,0)_50%,rgba(13,14,15,0)_58%,rgba(13,14,15,0.7)_100%)]" />
 
@@ -69,13 +69,13 @@ export function Divisions() {
               </div>
 
               <ul className="relative flex flex-wrap gap-1.5 p-6 md:p-7">
-                {d.items.slice(0, 6).map((it) => (
+                {d.items.slice(0, 4).map((it) => (
                   <li key={it} className="rounded-full border border-white/15 bg-black/45 px-3 py-1.5 text-[0.8rem] font-medium text-white backdrop-blur-md">
                     {it}
                   </li>
                 ))}
-                {d.items.length > 6 ? (
-                  <li className="rounded-full bg-amber px-3 py-1.5 text-[0.8rem] font-medium text-ink">+{d.items.length - 6} more</li>
+                {d.items.length > 4 ? (
+                  <li className="rounded-full bg-amber px-3 py-1.5 text-[0.8rem] font-medium text-ink">+{d.items.length - 4} more</li>
                 ) : null}
               </ul>
             </Link>

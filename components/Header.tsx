@@ -21,7 +21,7 @@ export function Logo({ className = "" }: { className?: string }) {
       height={303}
       priority
       unoptimized
-      className={`h-[3.25rem] w-auto drop-shadow-[0_12px_18px_rgba(0,0,0,0.5)] md:h-[4.25rem] ${className}`}
+      className={`h-[3.25rem] w-auto drop-shadow-[0_4px_10px_rgba(0,0,0,0.28)] md:h-[4.25rem] ${className}`}
     />
   );
 }
@@ -45,7 +45,7 @@ function DropPanel({ group, onNavigate }: { group: NavGroup; onNavigate: () => v
             onClick={onNavigate}
             className="group relative flex min-h-[18rem] flex-col justify-end overflow-hidden rounded-[20px] p-5 text-white"
           >
-            <Image src={cat.photo} alt="" fill sizes="272px" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            <Image src={cat.photo} alt="" fill sizes="480px" className="object-cover transition-transform duration-700 group-hover:scale-105" />
             <span aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,14,15,0)_30%,rgba(13,14,15,0.9)_100%)]" />
             <span className="relative text-[1.35rem] font-medium tracking-[-0.02em]">{cat.title}</span>
             <span className="relative mt-1.5 text-[0.85rem] leading-snug text-white/75">{cat.text}</span>
@@ -112,11 +112,6 @@ export function Header() {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 px-5 pt-5 md:px-8 md:pt-7">
-        {/* Soft blur at the top edge once scrolled, so page text doesn't run under the logo */}
-        <div
-          aria-hidden
-          className={`pointer-events-none absolute inset-x-0 top-0 -z-10 h-28 backdrop-blur-md transition-opacity duration-500 [mask-image:linear-gradient(180deg,#000_45%,transparent)] md:h-32 ${scrolled ? "opacity-100" : "opacity-0"}`}
-        />
         <div className="mx-auto flex max-w-[1500px] items-center justify-between gap-4">
           <Link href="/" aria-label="OAGITECH home" onClick={closeAll} className="shrink-0">
             <Logo />
